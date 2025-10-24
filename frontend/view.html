@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact — View</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app view-app">
+    <header class="topbar">
+      <button id="backBtn" class="back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+      <h1>Contact</h1>
+      <div></div>
+    </header>
+
+    <main class="view-main">
+      <div id="detailCard" class="detail-card">
+        <div class="avatar-large"><i class="fa-solid fa-user"></i></div>
+        <h2 id="viewName">Loading...</h2>
+        <p id="viewEmail" class="muted"></p>
+        <p id="viewPhone" class="muted"></p>
+      </div>
+    </main>
+  </div>
+
+<script>
+const API = 'http://localhost:3000/contacts';
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
+document.getElementById('backBtn').addEventListener('click', ()=> location.href = 'index.html');
+
+if (!id) {
+  document.getElementById('viewName').textContent = 'Contact not found';
+} else {
+  fetch(`${API}/${id}`)
+    .then(r => {
+      if (!r.ok) throw new Error('Not found');
+      return r.json();
+    })
+    .then(contact => {
+      document.getElementById('viewName').textContent = contact.name || '-';
+      document.getElementById('viewEmail').textContent = contact.email || '-';
+      document.getElementById('viewPhone').textContent = contact.phone || '-';
+    })
+    .catch(() => {
+      document.getElementById('viewName').textContent = 'Unable to load contact';
+      document.getElementById('viewEmail').textContent = '';
+      document.getElementById('viewPhone').textContent = '';
+    });
+}
+</script>
+</body>
+</html>
+

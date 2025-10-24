@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contacts</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Contacts</h1>
+      <button id="addBtn" class="fab" title="Add contact"><i class="fa-solid fa-plus"></i></button>
+    </header>
+
+    <main class="main">
+      <div class="search-wrap">
+        <input id="searchInput" placeholder="🔍 Search contacts" />
+      </div>
+
+      <section id="contacts" class="cards-grid" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <!-- Slide-in panel (right drawer) -->
+  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h2 id="drawerTitle">Add Contact</h2>
+      <button id="closeDrawer" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <form id="drawerForm" class="drawer-form">
+      <label class="field">
+        <span>Name</span>
+        <input id="name" type="text" placeholder="Full name" required />
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input id="email" type="email" placeholder="you@example.com" required />
+      </label>
+
+      <label class="field">
+        <span>Phone</span>
+        <input id="phone" type="text" placeholder="+91 98765 43210" required />
+      </label>
+
+      <div class="drawer-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" id="cancelDrawer" class="btn btn-ghost">Cancel</button>
+      </div>
+    </form>
+  </aside>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
